@@ -19,10 +19,10 @@ using namespace std;
 // cache struct
 struct mcache
 {
-    bool validbit;
-    bool history;
-    int tag;
-    string data;
+    bool validbit = false;
+    bool history = false;
+    int tag = 0;
+    string data = "   ";
 };
 
 // cache 2d array
@@ -104,11 +104,11 @@ void Decode(string data, int counter)
     
     // if string length is 0 or exceed then exit the code
     if(data.length() == 0 ){
-        cout << "EMPTY STRING  I AM EXITING" <<endl<<endl;
+        cout << "NOTHING IN MEMORY ?" <<endl<<endl;
         exit(0);
     }else if (data.length() >33  ){
         
-        cout << "ERROR" <<endl<<endl;
+        cout << "ERROR: EXCEED THE STRING LIMIT OF 32" <<endl<<endl;
         exit(0);
     }else
     {
@@ -178,11 +178,11 @@ void Decode2(string data,unsigned long & opcode,unsigned long & rs_register, uns
     
     // if string length is 0 or exceed then exit the code
     if(data.length() == 0 ){
-        cout << "EMPTY STRING  I AM EXITING" <<endl<<endl;
+        cout << "NOTHING IN REGISTER" <<endl<<endl;
         exit(0);
     }else if (data.length() >33  ){
         
-        cout << "ERROR" <<endl<<endl;
+        cout << "ERROR: EXCEED THE STRING LIMIT OF 32" <<endl<<endl;
         exit(0);
     }else
     {
@@ -300,45 +300,40 @@ void searching_cache(int SetNumber, int Tag ,int rt_register, string data )
     
     int register_number = rt_register - 16;
     
-    for(int i=0; i<8; i++)    //This loops on the Set Number
-    {
-        for(int j=0; j<2; j++) //This loops on the Block
-        {
-            if (mycache[SetNumber][i].validbit == true)
+            if (mycache[SetNumber][0].validbit == true)
             {
-                if(mycache[SetNumber][i].tag == Tag){
+                if(mycache[SetNumber][0].tag == Tag){
                     
-                    cout<<" found [hit] "<<endl;
+                    cout<<" FOUND [HIT] "<<endl;
+                }else{
+                    cout<<" NOT FOUND [MISS]"<<endl;
+                }
+                
+            }else if (mycache[SetNumber][1].validbit == true){
+                
+                if(mycache[SetNumber][1].tag == Tag){
+                    
+                    cout<<" FOUND [HIT] "<<endl;
                     
                 }else{
                     
-                    cout<<" not found [miss]"<<endl;
+                    cout<<" NOT FOUND [MISS]"<<endl;
                 }
+
+            }else if (mycache[SetNumber][0].validbit == false){
                 
-            }else{
-                
-                if (mycache[SetNumber][0].validbit == false)
-                {
-                    mycache[SetNumber][0].validbit = true;
-                    int blockNum = 0;
-                    Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
-                }
-                else if(mycache[SetNumber][1].validbit == false)
-                {
-                    mycache[SetNumber][1].validbit = true;
-                    int blockNum = 1;
-                    Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
-                }
-                
+                cout<< "NOT FOUND [MISS]"<<endl;
+                int blockNum = 0;
+                Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
+                mycache[SetNumber][blockNum].validbit = true;
+            }else if (mycache[SetNumber][1].validbit == false){
             
-            }// else end
+                cout<< "NOT FOUND [MISS]"<<endl;
+                int blockNum = 1;
+                Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
+                mycache[SetNumber][blockNum].validbit = true;
             
-            
-        }// for loop second end
-        
-        
-        
-    } // for loop end
+            }
     
     
 }//function end
@@ -349,16 +344,9 @@ void Load_to_cache(int SetNumber,int Tag,int blockNum,int register_number,string
 {
     cout<<endl<<"i am loading bro"<<endl<<endl;
  
-    for(int i=0; i<8; i++)    //This loops on the Set Number
-    {
-        for(int j=0; j<2; j++) //This loops on the Block
-        {
-            mycache[SetNumber][blockNum].tag = Tag;
-            mycache[SetNumber][blockNum].data = data;
-            register_file[register_number] = mycache[SetNumber][blockNum].data;
-        }// for loop second end
-        
-    } // for loop end
+              mycache[SetNumber][blockNum].tag = Tag;
+             mycache[SetNumber][blockNum].data = data;
+                register_file[register_number] = mycache[SetNumber][blockNum].data;
     
     
     for(int k=0; k<8;k++){
@@ -379,6 +367,52 @@ void Load_to_cache(int SetNumber,int Tag,int blockNum,int register_number,string
 
 
 
+
+
+
+////    for(int i=0; i<8; i++)    //This loops on the Set Number
+////    {
+////        for(int j=0; j<2; j++) //This loops on the Block
+////        {
+//if (mycache[SetNumber][0].validbit == true)
+//{
+//    if(mycache[SetNumber][0].tag == Tag){
+//        
+//        cout<<" found [hit] "<<endl;
+//        
+//        }else{
+//            
+//            cout<<" not found [miss]"<<endl;
+//        }
+//        
+//        }else{
+//            
+//            if (mycache[SetNumber][0].validbit == false)
+//            {
+//                mycache[SetNumber][0].validbit = true;
+//                int blockNum = 0;
+//                Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
+//            }
+//            else if(mycache[SetNumber][1].validbit == false)
+//            {
+//                mycache[SetNumber][1].validbit = true;
+//                int blockNum = 1;
+//                Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
+//            }
+//            
+//            
+//        }// else end
+//        
+//        
+//        //   }// for loop second end
+//        
+//        
+//        
+//        //  } // for loop end
+//        
+//        
+//        }//function end
+//
 
 
 
