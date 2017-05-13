@@ -1,0 +1,192 @@
+0    NOT FOUND  [MISS]
+1    NOT FOUND  [MISS]
+2    NOT FOUND  [MISS]
+3    NOT FOUND  [MISS]
+4        FOUND   [HIT]
+5        FOUND   [HIT]
+6        FOUND   [HIT]
+7        FOUND   [HIT]
+8    NOT FOUND  [MISS]
+9    NOT FOUND  [MISS]
+10        FOUND  [HIT]
+11    NOT FOUND [MISS]
+12        FOUND  [HIT]
+13    NOT FOUND [MISS]
+14        FOUND  [HIT]
+15    NOT FOUND [MISS]
+16        FOUND  [HIT]
+17    NOT FOUND [MISS]
+18        FOUND  [HIT]
+19    NOT FOUND [MISS]
+20        FOUND  [HIT]
+21    NOT FOUND [MISS]
+22        FOUND  [HIT]
+23    NOT FOUND [MISS]
+
+
+
+  register  [0]
+  register  [1] 10001100000100010000000000100100
+  register  [2] 10001100000100100000000000010000
+  register  [3] 10001100000100100000000000010000
+  register  [4] 10001100000101000000000010101100
+  register  [5]
+  register  [6]
+  register  [7]
+
+
+
+
+ Set [0]  Block [0]  10001100000100110000000000100000
+ Set [0]  Block [1]     
+
+ Set [1]  Block [0]  10001100000100010000000000000100
+ Set [1]  Block [1]  10001100000100010000000000100100
+
+ Set [2]  Block [0]     
+ Set [2]  Block [1]     
+
+ Set [3]  Block [0]  10001100000100100000000000101100
+ Set [3]  Block [1]  10001100000101000000000010101100
+
+ Set [4]  Block [0]  10001100000100100000000000010000
+ Set [4]  Block [1]     
+
+ Set [5]  Block [0]  10001100000101000000000000010100
+ Set [5]  Block [1]     
+
+ Set [6]  Block [0]     
+ Set [6]  Block [1]     
+
+ Set [7]  Block [0]     
+ Set [7]  Block [1]   
+
+
+  Memory  [0]  10001100000100010000000000000100
+  Memory  [1]  10001100000100010000000000000100
+  Memory  [2]  10001100000100110000000000100000
+  Memory  [3]  10001100000101000000000000010100
+  Memory  [4]  10001100000100100000000000010000
+  Memory  [5]  10001100000101000000000000010100
+  Memory  [6]  10101100000100110000000001001100
+  Memory  [7]  10101100000101000000000011100000
+  Memory  [8]  10001100000100010000000000100100
+  Memory  [9]  10001100000100010000000000100100
+  Memory  [10] 10001100000100110000000000010000
+  Memory  [11] 10001100000100100000000000101100
+  Memory  [12] 10101100000100010000000000010100
+  Memory  [13] 10101100000100100000000000011000
+  Memory  [14] 10101100000100110000000000100100
+  Memory  [15] 10101100000101000000000001000100
+  Memory  [16] 10001100000100010000000000100100
+  Memory  [17] 10001100000100100000000000101100
+  Memory  [18] 10001100000100110000000000010000
+  Memory  [19] 10001100000101000000000010101100
+  Memory  [20] 10101100000100010000000001100000
+  Memory  [21] 10101100000100100000000001010100
+  Memory  [22] 10101100000100110000000001011100
+  Memory  [23] 10101100000101000000000011110000
+  Memory  [24]
+  Memory  [25]
+  Memory  [26]
+  Memory  [27]
+  Memory  [28]
+  Memory  [29]
+  Memory  [30]
+  Memory  [31]
+  Memory  [32]
+  Memory  [33]
+  Memory  [34]
+  Memory  [35]
+  Memory  [36]
+  Memory  [37]
+  Memory  [38]
+  Memory  [39]
+  Memory  [40]
+  Memory  [41]
+  Memory  [42]
+  Memory  [43] 10001100000101000000000010101100
+  Memory  [44]
+  Memory  [45]
+  Memory  [46]
+  Memory  [47]
+  Memory  [48]
+  Memory  [49]
+  Memory  [50]
+  Memory  [51]
+  Memory  [52]
+  Memory  [53]
+  Memory  [54]
+  Memory  [55]
+  Memory  [56]
+  Memory  [57]
+  Memory  [58]
+  Memory  [59]
+  Memory  [60]
+  Memory  [61]
+  Memory  [62]
+  Memory  [63]
+  Memory  [64]
+  Memory  [65]
+  Memory  [66]
+  Memory  [67]
+  Memory  [68]
+  Memory  [69]
+  Memory  [70]
+  Memory  [71]
+  Memory  [72]
+  Memory  [73]
+  Memory  [74]
+  Memory  [75]
+  Memory  [76]
+  Memory  [77]
+  Memory  [78]
+  Memory  [79]
+  Memory  [80]
+  Memory  [81]
+  Memory  [82]
+  Memory  [83]
+  Memory  [84]
+  Memory  [85]
+  Memory  [86]
+  Memory  [87]
+  Memory  [88]
+  Memory  [89]
+  Memory  [90]
+  Memory  [91]
+  Memory  [92]
+  Memory  [93]
+  Memory  [94]
+  Memory  [95]
+  Memory  [96]
+  Memory  [97]
+  Memory  [98]
+  Memory  [99]
+  Memory  [100]
+  Memory  [101]
+  Memory  [102]
+  Memory  [103]
+  Memory  [104]
+  Memory  [105]
+  Memory  [106]
+  Memory  [107]
+  Memory  [108]
+  Memory  [109]
+  Memory  [110]
+  Memory  [111]
+  Memory  [112]
+  Memory  [113]
+  Memory  [114]
+  Memory  [115]
+  Memory  [116]
+  Memory  [117]
+  Memory  [118]
+  Memory  [119]
+  Memory  [120]
+  Memory  [121]
+  Memory  [122]
+  Memory  [123]
+  Memory  [124]
+  Memory  [125]
+  Memory  [126]
+  Memory  [127]

@@ -1,10 +1,20 @@
 //
 //  main.cpp
-//  program two
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//            Memory Hierarchy Simulation
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//  Created by Harkaranjeet Singh on 5/8/17.
+//  Copyright © 2017 Harkaranjeet Singh. All rights reserved.
 //
-//  Created by Harkaran Brar on 5/8/17.
-//  Copyright © 2017 Harkaran Brar. All rights reserved.
-//
+// This program Consist of decribed function to simulate cache
+// Cache is 2way-set-associative, total cache data size is 16 words, one word per block
+// defined struct mcache to set a cache
+// each cache block has 3 fields, i.e., valid bit, tag and data;
+// Main memory size is 128 words in array named Memory_array[128]
+// CPU register are defined as strig array register_file[8]
+// it gives output of HIT and MISS
+// It also gives a result of registers,cache and Memory
+
 
 #include <iostream>
 #include <fstream>
@@ -24,6 +34,9 @@ struct mcache
     int tag = 0;
     string data = "   ";
 };
+
+//memory address array
+string Memory_array[128];
 
 // cache 2d array
 // 8 set contains two block each
@@ -65,7 +78,6 @@ int main()
 //  Read the data from file and stores it in array
 void readMemory()
 {
-    string array[128]; // creates array to hold words
     string mdata;
     int loop = 0;                            //short for loop for input
     string line;                            //this will contain the data read from the file
@@ -75,8 +87,8 @@ void readMemory()
         while (!myfile.eof())                      //while the end of file is NOT reached
         {
             getline(myfile, line);                //get one line from the file
-            array[loop] = line;
-            Decode(array[loop],loop);
+            Memory_array[loop] = line;
+            Decode(Memory_array[loop],loop);
             loop++;
         }
         
@@ -253,7 +265,7 @@ void storeWord(int rt_register, int rs_register)
 {
     
     unsigned long _opcode, _Rs_register, _Rt_register,_offset;
-    int SetNumber , Tag;
+    int SetNumber , Tag , Memory_address;
     int register_Number = rt_register - 16;  // to get a CPU register number
     string CPU_data;                         // string to store value of CPU reg
     
@@ -270,12 +282,25 @@ void storeWord(int rt_register, int rs_register)
     Decode2(CPU_data,_opcode , _Rs_register, _Rt_register, _offset);
     
     cout<<"========================== Store Word ================================"<<endl<<endl;
-    cout<<"RS register "<<_Rs_register<<"  RT register "<<_Rs_register<<" offset "<<_offset<<endl;
+    cout<<"RS register "<<_Rs_register<<"  RT register "<<_Rt_register<<" offset "<<_offset<<endl;
     
     //call the calculation function to get setnumber and tag value
     calculations(_offset, rs_register, SetNumber, Tag);
     
     cout<<"SetNumber = "<<SetNumber<<"   Tag = "<<Tag<<endl;
+    
+    searching_cache(SetNumber, Tag, _Rt_register, CPU_data);
+    
+    Memory_address = (Tag * 8) + SetNumber;
+    
+    Memory_array[Memory_address] = CPU_data;
+    cout<<" Memory Address "<<Memory_address<<endl;
+    
+    
+    for(int k=0; k<128;k++){
+        cout<<"  Memory  ["<<k<<"] "<<Memory_array[k]<<endl;;
+    }
+    // send it to memory
     
 }
 
@@ -303,10 +328,11 @@ void searching_cache(int SetNumber, int Tag ,int rt_register, string data )
             if (mycache[SetNumber][0].validbit == true)
             {
                 if(mycache[SetNumber][0].tag == Tag){
-                    
                     cout<<" FOUND [HIT] "<<endl;
+                    Load_to_cache(SetNumber, Tag, 0, register_number, mycache[SetNumber][0].data);
                 }else{
                     cout<<" NOT FOUND [MISS]"<<endl;
+                    Load_to_cache(SetNumber, Tag, 1, register_number, data);
                 }
                 
             }else if (mycache[SetNumber][1].validbit == true){
@@ -314,20 +340,19 @@ void searching_cache(int SetNumber, int Tag ,int rt_register, string data )
                 if(mycache[SetNumber][1].tag == Tag){
                     
                     cout<<" FOUND [HIT] "<<endl;
-                    
+                    Load_to_cache(SetNumber, Tag, 1, register_number, mycache[SetNumber][1].data);
                 }else{
                     
                     cout<<" NOT FOUND [MISS]"<<endl;
+                    Load_to_cache(SetNumber, Tag, 1, register_number, data);
                 }
 
             }else if (mycache[SetNumber][0].validbit == false){
-                
                 cout<< "NOT FOUND [MISS]"<<endl;
                 int blockNum = 0;
                 Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
                 mycache[SetNumber][blockNum].validbit = true;
             }else if (mycache[SetNumber][1].validbit == false){
-            
                 cout<< "NOT FOUND [MISS]"<<endl;
                 int blockNum = 1;
                 Load_to_cache(SetNumber,Tag,blockNum,register_number,data);
@@ -339,7 +364,7 @@ void searching_cache(int SetNumber, int Tag ,int rt_register, string data )
 }//function end
 
 
-
+// Load the data to cache
 void Load_to_cache(int SetNumber,int Tag,int blockNum,int register_number,string data)
 {
     cout<<endl<<"i am loading bro"<<endl<<endl;
@@ -352,6 +377,23 @@ void Load_to_cache(int SetNumber,int Tag,int blockNum,int register_number,string
     for(int k=0; k<8;k++){
         cout<<"  register  ["<<k<<"] "<<register_file[k]<<endl;;
     }
+    
+    
+    
+        for(int i=0; i<8; i++)    //This loops on the Set Number
+        {
+            for(int j=0; j<2; j++) //This loops on the Block
+            {
+                
+                cout<<" Set ["<<i<<"]  Block ["<<j<<"]  "<<mycache[i][j].data<<endl;
+            
+            }
+            cout<<endl;
+        }
+    
+    
+
+    
     
 }
 
